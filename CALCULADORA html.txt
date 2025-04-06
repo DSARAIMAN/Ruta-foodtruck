@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Transporte - Food Truck</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    h2 {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculadora de Coste de Transporte</h1>
+
+  <label for="distancia">Distancia (km):</label>
+  <input type="number" id="distancia" placeholder="Ej. 150">
+
+  <label for="consumo">Consumo (litros/100km):</label>
+  <input type="number" id="consumo" placeholder="Ej. 15">
+
+  <label for="precio">Precio del combustible (€/litro):</label>
+  <input type="number" step="0.01" id="precio" placeholder="Ej. 1.70">
+
+  <label for="extras">Otros costes (peajes, mantenimiento, etc.):</label>
+  <input type="number" id="extras" placeholder="Ej. 20">
+
+  <button onclick="calcular()">Calcular coste total</button>
+
+  <h2 id="resultado">Total: 0 €</h2>
+
+  <script>
+    function calcular() {
+      const distancia = parseFloat(document.getElementById('distancia').value) || 0;
+      const consumo = parseFloat(document.getElementById('consumo').value) || 0;
+      const precio = parseFloat(document.getElementById('precio').value) || 0;
+      const extras = parseFloat(document.getElementById('extras').value) || 0;
+
+      const costeCombustible = (distancia / 100) * consumo * precio;
+      const total = costeCombustible + extras;
+
+      document.getElementById('resultado').innerText = `Total: ${total.toFixed(2)} €`;
+    }
+  </script>
+</body>
+</html>
